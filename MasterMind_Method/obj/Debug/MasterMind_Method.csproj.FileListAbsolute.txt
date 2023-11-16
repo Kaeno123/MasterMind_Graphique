@@ -1,0 +1,8 @@
+D:\Module 404\MasterMind_Graphique_Projet\MasterMind_Method\obj\Debug\MasterMind_Method.csproj.AssemblyReference.cache
+D:\Module 404\MasterMind_Graphique_Projet\MasterMind_Method\obj\Debug\MasterMind_Method.csproj.SuggestedBindingRedirects.cache
+D:\Module 404\MasterMind_Graphique_Projet\MasterMind_Method\obj\Debug\MasterMind_Method.csproj.CoreCompileInputs.cache
+D:\Module 404\MasterMind_Graphique_Projet\MasterMind_Method\bin\Debug\MasterMind_Method.exe.config
+D:\Module 404\MasterMind_Graphique_Projet\MasterMind_Method\bin\Debug\MasterMind_Method.exe
+D:\Module 404\MasterMind_Graphique_Projet\MasterMind_Method\bin\Debug\MasterMind_Method.pdb
+D:\Module 404\MasterMind_Graphique_Projet\MasterMind_Method\obj\Debug\MasterMind_Method.exe
+D:\Module 404\MasterMind_Graphique_Projet\MasterMind_Method\obj\Debug\MasterMind_Method.pdb

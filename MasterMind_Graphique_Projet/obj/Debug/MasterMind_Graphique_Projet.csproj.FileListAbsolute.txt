@@ -1,0 +1,11 @@
+D:\Module 404\MasterMind_Graphique_Projet\MasterMind_Graphique_Projet\bin\Debug\MasterMind_Graphique_Projet.exe.config
+D:\Module 404\MasterMind_Graphique_Projet\MasterMind_Graphique_Projet\bin\Debug\MasterMind_Graphique_Projet.exe
+D:\Module 404\MasterMind_Graphique_Projet\MasterMind_Graphique_Projet\bin\Debug\MasterMind_Graphique_Projet.pdb
+D:\Module 404\MasterMind_Graphique_Projet\MasterMind_Graphique_Projet\obj\Debug\MasterMind_Graphique_Projet.csproj.AssemblyReference.cache
+D:\Module 404\MasterMind_Graphique_Projet\MasterMind_Graphique_Projet\obj\Debug\MasterMind_Graphique_Projet.csproj.SuggestedBindingRedirects.cache
+D:\Module 404\MasterMind_Graphique_Projet\MasterMind_Graphique_Projet\obj\Debug\MasterMind_Graphique_Projet.Form1.resources
+D:\Module 404\MasterMind_Graphique_Projet\MasterMind_Graphique_Projet\obj\Debug\MasterMind_Graphique_Projet.Properties.Resources.resources
+D:\Module 404\MasterMind_Graphique_Projet\MasterMind_Graphique_Projet\obj\Debug\MasterMind_Graphique_Projet.csproj.GenerateResource.cache
+D:\Module 404\MasterMind_Graphique_Projet\MasterMind_Graphique_Projet\obj\Debug\MasterMind_Graphique_Projet.csproj.CoreCompileInputs.cache
+D:\Module 404\MasterMind_Graphique_Projet\MasterMind_Graphique_Projet\obj\Debug\MasterMind_Graphique_Projet.exe
+D:\Module 404\MasterMind_Graphique_Projet\MasterMind_Graphique_Projet\obj\Debug\MasterMind_Graphique_Projet.pdb
