@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace MasterMind_Graphique_Projet
 {
-    public partial class MasterMindGame : Form
+    public partial class frm_MasterMindGame : Form
     {
-        public MasterMindGame()
+        public frm_MasterMindGame()
         {
             InitializeComponent();
         }
@@ -33,110 +33,64 @@ namespace MasterMind_Graphique_Projet
                 string essai = "";
                 string reTry = "oui";
                 int win;
-                string choice = "1";
                 string finalgoal;
 
+            string GenCombinaisonColour()
+            {
+                //clean the console
+                Console.Clear();
 
-                while (choice == "1" || choice == "2")
+                //generate 4 colors among 7 randomly
+                Random random = new Random();
+
+                int[] randomColors = new int[4];
+                randomColors[0] = random.Next(6);
+                randomColors[1] = random.Next(6);
+                randomColors[2] = random.Next(6);
+                randomColors[3] = random.Next(6);
+
+                for (int i = 0; i < randomColors.Length; i++)
                 {
-                    Menu();
+                    if (randomColors[i] == 0)
+                    {
+                        goal[i] = "g";
+                    }
+                    else if (randomColors[i] == 1)
+                    {
+                        goal[i] = "y";
+                    }
+                    else if (randomColors[i] == 2)
+                    {
+                        goal[i] = "w";
+                    }
+                    else if (randomColors[i] == 3)
+                    {
+                        goal[i] = "r";
+                    }
+                    else if (randomColors[i] == 4)
+                    {
+                        goal[i] = "m";
+                    }
+                    else if (randomColors[i] == 5)
+                    {
+                        goal[i] = "b";
+                    }
+                    else if (randomColors[i] == 6)
+                    {
+                        goal[i] = "c";
+                    }
                 }
 
-                void Menu()
-                {
-                    reTry = "oui";
+                //the combination that the user must find
+                 finalgoal = goal[0] + goal[1] + goal[2] + goal[3];
 
-                    //clean the console
-                    Console.Clear();
+                essai = "";
+                win = 0;
 
-                    //Menu of MasterMind
-                    Console.ForegroundColor = ConsoleColor.Blue;
-                    Console.WriteLine("*******************************\nBIENVENUE SUR MASTERMIND !");
-                    Console.WriteLine("*******************************\n");
-                    Console.Write("1. Mode normal\n2. Mode facile\n3. Quitter\n\nInsérez le chiffre de l'action que vous souhaitez exécuter: ");
-                    Console.ResetColor();
-
-                    choice = Console.ReadLine();
-
-                    if (choice == "1")
-                    {
-                        //normal mode
-                        Mode("normal");
-                    }
-                    else if (choice == "2")
-                    {
-                        //easy mode
-                        Mode("easy");
-                    }
-                    else if (choice == "3")
-                    {
-
-                    }
-                    else
-                    {
-                        while (choice != "1")
-                        {
-                            Console.ForegroundColor = ConsoleColor.Blue;
-                            Console.WriteLine("\nVous n'avez pas insérez les caractères attendus.\nVeuillez recommencer en appuyant sur le chiffre 1.");
-                            Console.ResetColor();
-                            choice = Console.ReadLine();
-                        }
-                    }
-                }
-                string GenCombinaisonColour()
-                {
-                    //clean the console
-                    Console.Clear();
-
-                    //generate 4 colors among 7 randomly
-                    Random random = new Random();
-
-                    int[] randomColors = new int[4];
-                    randomColors[0] = random.Next(6);
-                    randomColors[1] = random.Next(6);
-                    randomColors[2] = random.Next(6);
-                    randomColors[3] = random.Next(6);
-
-                    for (int i = 0; i < randomColors.Length; i++)
-                    {
-                        if (randomColors[i] == 0)
-                        {
-                            goal[i] = "g";
-                        }
-                        else if (randomColors[i] == 1)
-                        {
-                            goal[i] = "y";
-                        }
-                        else if (randomColors[i] == 2)
-                        {
-                            goal[i] = "w";
-                        }
-                        else if (randomColors[i] == 3)
-                        {
-                            goal[i] = "r";
-                        }
-                        else if (randomColors[i] == 4)
-                        {
-                            goal[i] = "m";
-                        }
-                        else if (randomColors[i] == 5)
-                        {
-                            goal[i] = "b";
-                        }
-                        else if (randomColors[i] == 6)
-                        {
-                            goal[i] = "c";
-                        }
-                    }
-
-                    //the combination that the user must find
-                    finalgoal = goal[0] + goal[1] + goal[2] + goal[3];
-
-                    essai = "";
-                    win = 0;
-
-                    return finalgoal;
-                }
+                return finalgoal;
+            }
+              
+               
                 void Mode(string mode)
                 {
                     //launch of the game
@@ -175,27 +129,7 @@ namespace MasterMind_Graphique_Projet
                         }
                     }
                 }
-                void WelcomeGame(string mode)
-                {
-                    if (mode == "normal")
-                    {
-                        //welcome text and introdocution to the game
-                        Console.ForegroundColor = ConsoleColor.Blue;
-                        Console.WriteLine("*******************************");
-                        Console.WriteLine("Couleurs possibles: gywrmbc");
-                        Console.WriteLine("Devine le code en 4 couleurs.\n*******************************\n");
-                        Console.ResetColor();
-                    }
-                    else if (mode == "easy")
-                    {
-                        //welcome text and introdocution to the game
-                        Console.ForegroundColor = ConsoleColor.Blue;
-                        Console.WriteLine("*******************************");
-                        Console.WriteLine("Couleurs possibles: gywrmbc");
-                        Console.WriteLine("Devine le code en 4 couleurs.");
-                        Console.WriteLine("Le symbole '$' signifie que vous avez trouvé une bonne couleur, mais mal positionée.\n*******************************\n");
-                        Console.ResetColor();
-                    }
+               
                 }
                 int NormalMode(int numberTry)
                 {
@@ -407,23 +341,38 @@ namespace MasterMind_Graphique_Projet
             }*/
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Boutton pour aller dans le mode facile
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btn_EasyMode_Click(object sender, EventArgs e)
         {
+            //créer une instance du mode facile
+            frm_EasyMode easyMode = new frm_EasyMode();
 
+            //Montre le mode facile
+            easyMode.Show();
+                     
+            //Cache le menu principal
+            this.Hide();
         }
 
-        private void label1_Click_1(object sender, EventArgs e)
-        {
-
-        }
         /// <summary>
         /// Boutton pour aller dans le mode normal
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void lbl_NormalMode_Click(object sender, EventArgs e)
+        private void btn_NormalMode_Click_1(object sender, EventArgs e)
         {
-            
+            //créer une instance du mode normal
+            frm_NormalMode normalMode = new frm_NormalMode();
+
+            //Montre le mode normal
+            normalMode.Show();
+
+            //Cache le menu principal
+            this.Hide();
         }
     }
 }

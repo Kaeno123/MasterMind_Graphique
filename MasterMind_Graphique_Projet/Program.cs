@@ -16,7 +16,7 @@ namespace MasterMind_Graphique_Projet
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MasterMindGame());
+            Application.Run(new frm_MasterMindGame());
         }
     }
 }
