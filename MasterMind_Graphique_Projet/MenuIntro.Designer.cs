@@ -39,11 +39,11 @@
             // 
             this.lbl_MasterMind.AutoSize = true;
             this.lbl_MasterMind.Cursor = System.Windows.Forms.Cursors.Cross;
-            this.lbl_MasterMind.Font = new System.Drawing.Font("Stencil", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_MasterMind.Font = new System.Drawing.Font("Gill Sans Ultra Bold", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_MasterMind.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.lbl_MasterMind.Location = new System.Drawing.Point(297, 112);
+            this.lbl_MasterMind.Location = new System.Drawing.Point(284, 112);
             this.lbl_MasterMind.Name = "lbl_MasterMind";
-            this.lbl_MasterMind.Size = new System.Drawing.Size(341, 42);
+            this.lbl_MasterMind.Size = new System.Drawing.Size(414, 49);
             this.lbl_MasterMind.TabIndex = 0;
             this.lbl_MasterMind.Text = "MasterMind Game";
             this.lbl_MasterMind.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -51,27 +51,29 @@
             // lbl_WelcomeToTheGame
             // 
             this.lbl_WelcomeToTheGame.AutoSize = true;
-            this.lbl_WelcomeToTheGame.Font = new System.Drawing.Font("Stencil", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_WelcomeToTheGame.Font = new System.Drawing.Font("Gill Sans Ultra Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_WelcomeToTheGame.Location = new System.Drawing.Point(348, 208);
             this.lbl_WelcomeToTheGame.Name = "lbl_WelcomeToTheGame";
-            this.lbl_WelcomeToTheGame.Size = new System.Drawing.Size(232, 22);
+            this.lbl_WelcomeToTheGame.Size = new System.Drawing.Size(265, 26);
             this.lbl_WelcomeToTheGame.TabIndex = 1;
             this.lbl_WelcomeToTheGame.Text = "Bienvenue dans le jeu";
             // 
             // lbl_ChooseAMode
             // 
             this.lbl_ChooseAMode.AutoSize = true;
-            this.lbl_ChooseAMode.Location = new System.Drawing.Point(348, 362);
+            this.lbl_ChooseAMode.Font = new System.Drawing.Font("Gill Sans Ultra Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_ChooseAMode.Location = new System.Drawing.Point(352, 352);
             this.lbl_ChooseAMode.Name = "lbl_ChooseAMode";
-            this.lbl_ChooseAMode.Size = new System.Drawing.Size(216, 19);
+            this.lbl_ChooseAMode.Size = new System.Drawing.Size(257, 23);
             this.lbl_ChooseAMode.TabIndex = 2;
             this.lbl_ChooseAMode.Text = "Choisis ton mode de jeu !";
             // 
             // btn_NormalMode
             // 
+            this.btn_NormalMode.Font = new System.Drawing.Font("Gill Sans Ultra Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_NormalMode.Location = new System.Drawing.Point(243, 497);
             this.btn_NormalMode.Name = "btn_NormalMode";
-            this.btn_NormalMode.Size = new System.Drawing.Size(100, 50);
+            this.btn_NormalMode.Size = new System.Drawing.Size(100, 60);
             this.btn_NormalMode.TabIndex = 3;
             this.btn_NormalMode.Text = "Mode normal";
             this.btn_NormalMode.UseVisualStyleBackColor = true;
@@ -79,9 +81,10 @@
             // 
             // btn_EasyMode
             // 
+            this.btn_EasyMode.Font = new System.Drawing.Font("Gill Sans Ultra Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_EasyMode.Location = new System.Drawing.Point(586, 497);
             this.btn_EasyMode.Name = "btn_EasyMode";
-            this.btn_EasyMode.Size = new System.Drawing.Size(100, 50);
+            this.btn_EasyMode.Size = new System.Drawing.Size(100, 60);
             this.btn_EasyMode.TabIndex = 4;
             this.btn_EasyMode.Text = "Mode facile";
             this.btn_EasyMode.UseVisualStyleBackColor = true;
