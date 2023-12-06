@@ -13,9 +13,10 @@ namespace MasterMind_Graphique_Projet
 {
     public partial class frm_NormalMode : Form
     {
+        //Création du tableau qui contient le code secret
         Color[] goalColours = new Color[4];
-        Label[] goalColoursLabel = new Label[4];                                
-        
+        Label[] goalColoursLabel = new Label[4];//TEMPORAIRE
+               
         //Compte le nombre d'essai
         int NumberTry = 1;
 
@@ -40,10 +41,11 @@ namespace MasterMind_Graphique_Projet
         Button[] btnClr = new Button[MaxColours];
         int marginBtn = 15;
 
-        //Création du tableau de labels bonne et mauvais position
+        //Création du tableau de labels bonne et mauvaise position
         Label[,] LblRightOrBadPosition = new Label[col,row];
 
         int rightPositionPlacement = 0;
+        int badPositionPlacement = 0;
 
         /// <summary>
         /// Initialisation de la page et de ses configurations
@@ -55,6 +57,7 @@ namespace MasterMind_Graphique_Projet
             //génère la combinaison de couleurs aléatoire dès qu'on entre dans la page
             GenCombinaisonColour();
 
+            //Création des labels et des boutons
             CreateLblClr();
             CreateBtnColours();
             CreateLblRightOrBadPosition();
@@ -81,10 +84,9 @@ namespace MasterMind_Graphique_Projet
                 goalColoursLabel[i].Width = 15;
                 goalColoursLabel[i].BackColor = goalColours[i];
 
+                //Positionnement des labels
                 int y = i * goalColoursLabel[i].Width + i * marginLbl + marginPnlV;
-
                 goalColoursLabel[i].Location = new Point(y, 0);
-
                 panel1.Controls.Add(goalColoursLabel[i]);                
             }
         }
@@ -95,46 +97,14 @@ namespace MasterMind_Graphique_Projet
         /// <returns></returns>
         private void GenCombinaisonColour()
         {
-            //generate 4 colors among 7 randomly
-            Random random = new Random();         
-                    
-
+            Random random = new Random();
             int[] randomColors = new int[4];
-            for (int i = 0; i < 4; i++)
-            {
-                randomColors[i] = random.Next(6);
-            }
-           
+
+            //génère 4 couleurs parmi 7 aléatoirement
             for (int i = 0; i < randomColors.Length; i++)
             {
-                if (randomColors[i] == 0)
-                {
-                    goalColours[i] = TabColours[0];
-                }
-                else if (randomColors[i] == 1)
-                {
-                    goalColours[i] = TabColours[1];
-                }
-                else if (randomColors[i] == 2)
-                {
-                    goalColours[i] = TabColours[2];
-                }
-                else if (randomColors[i] == 3)
-                {
-                    goalColours[i] = TabColours[3];
-                }
-                else if (randomColors[i] == 4)
-                {
-                    goalColours[i] = TabColours[4];
-                }
-                else if (randomColors[i] == 5)
-                {
-                    goalColours[i] = TabColours[5];
-                }
-                else if (randomColors[i] == 6)
-                {
-                    goalColours[i] = TabColours[6];
-                }
+                randomColors[i] = random.Next(7);
+                goalColours[i] = TabColours[randomColors[i]];
             }            
         }
 
@@ -145,18 +115,19 @@ namespace MasterMind_Graphique_Projet
         {
             for (int i = 0; i < MaxColours; i++)
             {
+                //Création des boutons et de leurs caractéristiques
                 btnClr[i] = new Button();
                 btnClr[i].Size = new Size(40, 40);
                 btnClr[i].BackColor = TabColours[i];
                 btnClr[i].Tag = btnClr[i].BackColor;
                 btnClr[i].Text = "";
 
+                //Positionnement des boutons de couleurs
                 int a = btnClr[i].Height * i + marginBtn * i + marginBtn;
-
                 btnClr[i].Location = new Point(10, a);
-
                 pnlBtnClr.Controls.Add(btnClr[i]);
 
+                //attache un événement au clic de chaque bouton
                 btnClr[i].Click += btn_Color_Click;
             }
         }
@@ -168,47 +139,32 @@ namespace MasterMind_Graphique_Projet
         /// <param name="e"></param>
         private void btn_Color_Click(object sender, EventArgs e)
         {
-            //Envoie l'information de la couleur choisie à la méthode
-            if (sender is Button clickedButton)
+            //Désactive les boutons si le dernier label d'une ligne est remplie            
+            if (positionLabelColours[3, counterRow].BackColor != Color.LightGray)
             {
-                if (clickedButton.BackColor is Color colorName)
+                foreach (Button item in pnlBtnClr.Controls)
                 {
-                    Color color = colorName;
-                    ChangeLabelColor(color);
+                    item.Enabled = false;
                 }
             }
-
-            //Désactive les boutons si le dernier label d'une ligne est remplie
-            for (int i = 0; i < row; i++)
+            else
             {
-               if (positionLabelColours[3, counterRow].BackColor != Color.LightGray)
-               {
-                    foreach (Button item in pnlBtnClr.Controls)
-                    {
-                        item.Enabled = false;
-                    }
-                    break;                   
-               }                           
-            }                 
-        }
-
-        /// <summary>
-        /// Méthode qui applique une couleur choisie au label disponible
-        /// </summary>
-        /// <param name="color"></param>
-        private void ChangeLabelColor(Color color)
-        {
-            for (int i = 0; i < row; i++)
-            {
-                for (int j = 0; j < col; j++)
+                //Envoie l'information de la couleur choisie à la méthode
+                if (sender is Button clickedButton)
                 {
-                    if (positionLabelColours[j,i].BackColor == Color.LightGray)
+                    for (int i = 0; i < row; i++)
                     {
-                        positionLabelColours[j,i].BackColor = color;
-                        return;
+                        for (int j = 0; j < col; j++)
+                        {
+                            if (positionLabelColours[j, i].BackColor == Color.LightGray)
+                            {
+                                positionLabelColours[j, i].BackColor = clickedButton.BackColor;
+                                return;
+                            }
+                        }
                     }
                 }
-            }
+            }                       
         }
        
         /// <summary>
@@ -222,10 +178,12 @@ namespace MasterMind_Graphique_Projet
             {
                 lblClr.BackColor = Color.LightGray;
             }
-            foreach (Label label in LblRightOrBadPosition)
+            foreach (Label lblROBPosition in LblRightOrBadPosition)
             {
-                label.BackColor = Color.LightGray;
+                lblROBPosition.BackColor = Color.LightGray;
             }
+
+            //Réinitialisation des valeurs
             counterRow = 0;
             NumberTry = 1;
             
@@ -241,6 +199,7 @@ namespace MasterMind_Graphique_Projet
             lbl_NumberTry.Text = $"Essai numéro {NumberTry}";
             btn_Replay.Text = "Recommencer";
                         
+            //Active ou désactive des boutons
             btn_Replay.Enabled = false;
             btn_UndoLabelColor.Enabled = true;            
             btn_Check.Enabled = true;
@@ -250,6 +209,9 @@ namespace MasterMind_Graphique_Projet
             }
         }
 
+        /// <summary>
+        /// Méthode qui compare les couleurs choisies avec celles du code secret
+        /// </summary>
         private void VerifiyCode()
         {            
             //Si l'user trouve le code secret
@@ -267,31 +229,53 @@ namespace MasterMind_Graphique_Projet
                 btn_UndoLabelColor.Enabled = false;
                 btn_Replay.Enabled = true;
                 btn_Replay.Text = "Rejouer";
-                    
             }
+
+            //Créer un clone du tableau du code secret
+            Color[] TempColorGoal = new Color[col];
+            Array.Copy(goalColours, TempColorGoal, col);
+
+            //Créer un clone de mon tableau de labels contenant les couleurs choisies par l'user
+            Label[,] TempPositionLblClr = new Label[col, row];
+
+            for (int i = 0; i < row; i++)
+            {
+                for (int j = 0; j < col; j++)
+                {
+                    TempPositionLblClr[j,i] = new Label();
+                    TempPositionLblClr[j,i].BackColor = positionLabelColours[j,i].BackColor;
+                }
+            }
+
             for (int b = 0; b < col; b++)
             {
-                //Si l'user trouve une couleur bien placée
-                if (positionLabelColours[b, counterRow].BackColor == goalColours[b])
-                {
+                //Vérifie si l'user trouve une couleur bien placée
+                if (positionLabelColours[b, counterRow].BackColor == TempColorGoal[b])
+                {   
+                    TempPositionLblClr[b, counterRow].BackColor = Color.OrangeRed;
+                    TempColorGoal[b] = Color.Purple;
                     LblRightOrBadPosition[rightPositionPlacement, counterRow].BackColor = Color.White;
                     rightPositionPlacement++;
                 }               
             }
-            int ColVerify = 0;
+            badPositionPlacement = rightPositionPlacement;
+            int ColVerify = 0;                       
+
             for (int j = 0; j < 4; j++)
             {
                 for (int i = 0; i < col; i++)
                 {
-                    //Si l'user trouve une bonne couleur mais mal placée
-                    if (positionLabelColours[ColVerify, counterRow].BackColor == goalColours[i])
+                    // Vérifie si l'user trouve une bonne couleur mais mal placée
+                    if (TempPositionLblClr[ColVerify, counterRow].BackColor == TempColorGoal[i] && ColVerify != i)
                     {
-                        LblRightOrBadPosition[, counterRow].BackColor = Color.Black;
+                        TempColorGoal[i] = Color.Purple;//A améliorer marche pas encore
+                        LblRightOrBadPosition[badPositionPlacement, counterRow].BackColor = Color.Black;
+                        badPositionPlacement++;
+                        break;
                     }
                 }
                 ColVerify++;
-            }
-            
+            }         
         }
 
         /// <summary>
@@ -301,28 +285,52 @@ namespace MasterMind_Graphique_Projet
         /// <param name="e"></param>
         private void btn_Check_Click(object sender, EventArgs e)
         {
-            //affiche un message d'erreur pour chaque ligne si l'user valide avec moins de 4 couleurs                          
+            if (NumberTry < 10)
+            {                            
+                //affiche un message d'erreur pour chaque ligne si l'user valide avec moins de 4 couleurs                          
                
-            if (positionLabelColours[3, counterRow].BackColor == Color.LightGray)
-            {
-                MessageBox.Show("Vous n'avez pas choisis 4 couleurs");
-                
-            }
-            else 
-            {
-                //Active le bouton recommencer lorsque l'user fait un essai
-                btn_Replay.Enabled = true;
-
-                foreach (Button item in pnlBtnClr.Controls)
+                if (positionLabelColours[3, counterRow].BackColor == Color.LightGray)
                 {
-                    item.Enabled = true;
+                    MessageBox.Show("Vous n'avez pas choisis 4 couleurs");
+                
                 }
+                else 
+                {
+                    //Active le bouton recommencer lorsque l'user fait un essai
+                    btn_Replay.Enabled = true;
 
-                VerifiyCode();
-                rightPositionPlacement = 0;
-                counterRow++;
-                NumberTry++;
-                lbl_NumberTry.Text = $"Essai numéro {NumberTry}";
+                    foreach (Button item in pnlBtnClr.Controls)
+                    {
+                        item.Enabled = true;
+                    }
+
+                    VerifiyCode();
+                    rightPositionPlacement = 0;
+                    badPositionPlacement = 0;
+                    NumberTry++;
+                    for (int i = 0; i < col; i++)
+                    {
+                        if (positionLabelColours[i, counterRow].BackColor != goalColours[i])
+                        {
+                            lbl_NumberTry.Text = $"Essai numéro {NumberTry}";
+                        }
+                    }
+                    counterRow++;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Dommage, vous avez perdu :/");
+
+                //Désactive tous les boutons sauf recommencer et retourner au menu
+                btn_Check.Enabled = false;
+                foreach (Button button in pnlBtnClr.Controls)
+                {
+                    button.Enabled = false;
+                }
+                btn_UndoLabelColor.Enabled = false;
+                btn_Replay.Enabled = true;
+                btn_Replay.Text = "Rejouer";
             }
         }
 
@@ -333,7 +341,7 @@ namespace MasterMind_Graphique_Projet
         /// <param name="e"></param>
         private void btn_UndoLabelColor_Click(object sender, EventArgs e)
         {
-            UndoLabelColor(Color.LightGray);
+            UndoLabelColor();
 
             //réactive les boutons de couleurs
             foreach (Button item in pnlBtnClr.Controls)
@@ -343,10 +351,10 @@ namespace MasterMind_Graphique_Projet
         }
 
         /// <summary>
-        /// méthode qui annule une couleur choisie
+        /// méthode qui annule la dernière couleur choisie
         /// </summary>
         /// <param name="color"></param>
-        private void UndoLabelColor(Color color)
+        private void UndoLabelColor()
         {
             Label lastChangedLabel = null;
 
@@ -367,9 +375,7 @@ namespace MasterMind_Graphique_Projet
             if (lastChangedLabel != null)
             {
                 lastChangedLabel.BackColor = Color.LightGray;
-            }
-
-            
+            }            
         }
 
         /// <summary>
@@ -381,18 +387,17 @@ namespace MasterMind_Graphique_Projet
             {
                 for (int j = 0; j < col; j++)
                 {
-                    //Création du label et de ses caractéristiques
+                    //Création des labels et de leurs caractéristiques
                     positionLabelColours[j, i] = new Label();
                     positionLabelColours[j, i].Name = $"lblclr{i}_{j}";
                     positionLabelColours[j, i].Height = 40;
                     positionLabelColours[j, i].Width = 40;
                     positionLabelColours[j, i].BackColor = Color.LightGray;
 
+                    //Positionnement des labels
                     int x = j * positionLabelColours[j, i].Width + j*marginLbl + marginPnlH;
                     int y = i * positionLabelColours[j, i].Height + i*marginLbl + marginPnlV;
-
                     positionLabelColours[j, i].Location = new Point(x, y);
-
                     pnlClrChoose.Controls.Add(positionLabelColours[j, i]);
                 }
             }
@@ -407,18 +412,17 @@ namespace MasterMind_Graphique_Projet
             {
                 for (int j = 0; j < col; j++)
                 {
-                    //Création du label et de ses caractéristiques
+                    //Création des labels et de leurs caractéristiques
                     LblRightOrBadPosition[j, i] = new Label();
                     LblRightOrBadPosition[j, i].Name = $"lblROBPosition{i}_{j}";
                     LblRightOrBadPosition[j, i].Height = 13;
                     LblRightOrBadPosition[j, i].Width = 13;
                     LblRightOrBadPosition[j, i].BackColor = Color.LightGray;
 
+                   //Positionnement des labels
                     int x = j * LblRightOrBadPosition[j, i].Width + j * marginBtn;
                     int y = i * LblRightOrBadPosition[j, i].Height + i + 55*i;
-
                     LblRightOrBadPosition[j, i].Location = new Point(x, y);
-
                     pnl_RIghtOrBadP.Controls.Add(LblRightOrBadPosition[j, i]);
                 }
             }
@@ -437,68 +441,6 @@ namespace MasterMind_Graphique_Projet
             //réaffiche le menu d'acceuil
             frm_MasterMindGame masterMindGame = new frm_MasterMindGame();
             masterMindGame.Show();
-        }
-        /*private void normalMode()
-        {
-            //do this code while the user doesn't find the goal or do less than 10 try
-            int Ok = 0;
-            int MP = 0;
-
-          
-            //table that divide each character of the combination
-            char[] motsepa = new char[essai.Length];
-            char[] restMotsepa = new char[essai.Length];
-            char[] goalsa = new char[finalgoal.Length];
-            char[] Restgoalsa = new char[finalgoal.Length];
-
-            for (int i = 0; i < 4; i++)
-            {
-                motsepa[i] = (char)essai[i];
-                goalsa[i] = Convert.ToChar(goal[i]);
-            }
-
-            //for color that is in the right position
-            for (int i = 0; i < 4; i++)
-            {
-                if (motsepa[i] == Convert.ToChar(goal[i]))
-                {
-                    Ok = Ok + 1;
-                    restMotsepa[i] = 'Z';
-                    goalsa[i] = 'Y';
-                }
-                else
-                {
-                    restMotsepa[i] = motsepa[i];
-                    Restgoalsa[i] = goalsa[i];
-                }
-            }
-
-            //not accept when there are 2 color that are the same, it's save only one
-            bool[] usedIndices = new bool[Restgoalsa.Length];
-
-
-            //for bad positions
-            for (int i = 0; i < restMotsepa.Length; i++)
-            {
-                for (int j = 0; j < Restgoalsa.Length; j++)
-                {
-                    if (restMotsepa[i] == Restgoalsa[j] && i != j && !usedIndices[j])
-                    {
-                        MP++;
-                        restMotsepa[i] = 'L';
-                        usedIndices[j] = true;
-                    }
-                }
-            }
-
-            Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine("\n=>Ok: " + Ok);
-            Console.WriteLine("Mauvaise position: " + MP);
-            Console.ResetColor();           
-            
-        }*/
+        }      
     }               
 }
-       
-    
-
