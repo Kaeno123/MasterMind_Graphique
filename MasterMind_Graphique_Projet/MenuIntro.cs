@@ -12,333 +12,10 @@ namespace MasterMind_Graphique_Projet
 {
     public partial class frm_MasterMindGame : Form
     {
+        bool _inEnglish;
         public frm_MasterMindGame()
         {
-            InitializeComponent();
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-
-            /// <summary>
-            /// Description : Création du jeu MasterMind sur la console
-            /// Auteur :Kaeno Eyer
-            /// Date : 01.09.2023
-            /// </summary>
-            /// <param name="args"></param>
-
-            /*{
-                string[] goal = new string[4];
-                string essai = "";
-                string reTry = "oui";
-                int win;
-                string finalgoal;
-
-            string GenCombinaisonColour()
-            {
-                //clean the console
-                Console.Clear();
-
-                //generate 4 colors among 7 randomly
-                Random random = new Random();
-
-                int[] randomColors = new int[4];
-                randomColors[0] = random.Next(6);
-                randomColors[1] = random.Next(6);
-                randomColors[2] = random.Next(6);
-                randomColors[3] = random.Next(6);
-
-                for (int i = 0; i < randomColors.Length; i++)
-                {
-                    if (randomColors[i] == 0)
-                    {
-                        goal[i] = "g";
-                    }
-                    else if (randomColors[i] == 1)
-                    {
-                        goal[i] = "y";
-                    }
-                    else if (randomColors[i] == 2)
-                    {
-                        goal[i] = "w";
-                    }
-                    else if (randomColors[i] == 3)
-                    {
-                        goal[i] = "r";
-                    }
-                    else if (randomColors[i] == 4)
-                    {
-                        goal[i] = "m";
-                    }
-                    else if (randomColors[i] == 5)
-                    {
-                        goal[i] = "b";
-                    }
-                    else if (randomColors[i] == 6)
-                    {
-                        goal[i] = "c";
-                    }
-                }
-
-                //the combination that the user must find
-                 finalgoal = goal[0] + goal[1] + goal[2] + goal[3];
-
-                essai = "";
-                win = 0;
-
-                return finalgoal;
-            }
-              
-               
-                void Mode(string mode)
-                {
-                    //launch of the game
-                    while (reTry == "oui")
-                    {
-                        //génère la combinaison de couleur (réponse finale)
-                        GenCombinaisonColour();
-
-                        //welcome text and introdocution to the game
-                        WelcomeGame(mode);
-
-
-                        for (int numberTry = 1; numberTry <= 10 && win == 0; numberTry++)
-                        {
-                            if (mode == "normal")
-                            {
-                                NormalMode(numberTry);
-                                numberTry = NormalMode(numberTry);
-
-                            }
-                            else if (mode == "easy")
-                            {
-                                EasyMode(numberTry);
-                                numberTry = EasyMode(numberTry);
-                            }
-
-
-                            //if the user win
-                            ShowWhenWin(numberTry);
-
-                            //shows this code if the user loose after 10 try
-                            WhenTenTry(numberTry);
-
-                            Console.WriteLine();
-                            Console.WriteLine();
-                        }
-                    }
-                }
-               
-                }
-                int NormalMode(int numberTry)
-                {
-
-                    //do this code while the user doesn't find the goal or do less than 10 try
-                    int Ok = 0;
-                    int MP = 0;
-
-                    Console.ForegroundColor = ConsoleColor.Blue;
-                    Console.Write("\nEssai " + numberTry + " : ");
-                    Console.ResetColor();
-
-                    //the combination of color that choose the user
-                    essai = Console.ReadLine();
-
-                    if (essai.Length == 4)
-                    {
-                        //table that divide each character of the combination
-                        char[] motsepa = new char[essai.Length];
-                        char[] restMotsepa = new char[essai.Length];
-                        char[] goalsa = new char[finalgoal.Length];
-                        char[] Restgoalsa = new char[finalgoal.Length];
-
-                        for (int i = 0; i < 4; i++)
-                        {
-                            motsepa[i] = (char)essai[i];
-                            goalsa[i] = Convert.ToChar(goal[i]);
-                        }
-
-                        //for color that is in the right position
-                        for (int i = 0; i < 4; i++)
-                        {
-                            if (motsepa[i] == Convert.ToChar(goal[i]))
-                            {
-                                Ok = Ok + 1;
-                                restMotsepa[i] = 'Z';
-                                goalsa[i] = 'Y';
-                            }
-                            else
-                            {
-                                restMotsepa[i] = motsepa[i];
-                                Restgoalsa[i] = goalsa[i];
-                            }
-                        }
-
-                        //not accept when there are 2 color that are the same, it's save only one
-                        bool[] usedIndices = new bool[Restgoalsa.Length];
-
-
-                        //for bad positions
-                        for (int i = 0; i < restMotsepa.Length; i++)
-                        {
-                            for (int j = 0; j < Restgoalsa.Length; j++)
-                            {
-                                if (restMotsepa[i] == Restgoalsa[j] && i != j && !usedIndices[j])
-                                {
-                                    MP++;
-                                    restMotsepa[i] = 'L';
-                                    usedIndices[j] = true;
-                                }
-                            }
-                        }
-
-                        Console.ForegroundColor = ConsoleColor.Blue;
-                        Console.WriteLine("\n=>Ok: " + Ok);
-                        Console.WriteLine("Mauvaise position: " + MP);
-                        Console.ResetColor();
-                    }
-                    else if (essai.Length != 4)
-                    {
-                        numberTry--;
-                    }
-                    return numberTry;
-                }
-                int EasyMode(int numberTry)
-                {
-
-                    //do this code while the user doesn't find the goal or do less than 10 try                   
-                    int MP = 0;
-                    Console.ForegroundColor = ConsoleColor.Blue;
-                    Console.Write("\nEssai " + numberTry + " : ");
-                    Console.ResetColor();
-
-                    //the combination of color that choose the user
-                    essai = Console.ReadLine();
-
-                    if (essai.Length == 4)
-                    {
-                        //table that divide each character of the combination
-                        char[] motsepa = new char[essai.Length];
-                        char[] restMotsepa = new char[essai.Length];
-                        char[] goalsa = new char[finalgoal.Length];
-                        char[] Restgoalsa = new char[finalgoal.Length];
-
-
-                        for (int i = 0; i < 4; i++)
-                        {
-                            motsepa[i] = (char)essai[i];
-                            goalsa[i] = Convert.ToChar(goal[i]);
-                        }
-
-                        //for color that is in the right position
-                        for (int i = 0; i < 4; i++)
-                        {
-                            if (motsepa[i] == Convert.ToChar(goal[i]))
-                            {
-                                restMotsepa[i] = 'Z';
-                                goalsa[i] = 'Y';
-                            }
-                            else
-                            {
-                                restMotsepa[i] = motsepa[i];
-                                Restgoalsa[i] = goalsa[i];
-                            }
-                        }
-
-                        //not accept when there are 2 color that are the same, it's save only one
-                        bool[] usedIndices = new bool[Restgoalsa.Length];
-
-                        //for bad positions
-                        for (int i = 0; i < restMotsepa.Length; i++)
-                        {
-                            for (int j = 0; j < Restgoalsa.Length; j++)
-                            {
-                                if (restMotsepa[i] == Restgoalsa[j] && i != j && !usedIndices[j])
-                                {
-                                    MP++;
-                                    restMotsepa[i] = 'L';
-                                    usedIndices[j] = true;
-                                }
-                            }
-                        }
-
-                        //shows in the game the number of bad position
-                        for (int i = 0; i < MP; i++)
-                        {
-                            if (MP > 0)
-                            {
-                                Console.Write("$");
-                            }
-                        }
-                        if (MP > 0)
-                        {
-                            Console.Write(" : ");
-                        }
-
-                        //shows in the game the support for the user
-                        for (int i = 0; i < 4; i++)
-                        {
-                            if (motsepa[i] == Convert.ToChar(goal[i]))
-                            {
-                                Console.Write(goal[i]);
-
-                            }
-                            else
-                            {
-                                Console.Write("_");
-
-                            }
-                        }
-                    }
-                    else if (essai.Length != 4)
-                    {
-                        numberTry--;
-                    }
-                    return numberTry;
-                }
-                void ShowWhenWin(int numberTry)
-                {
-                    if (essai == finalgoal)
-                    {
-                        Console.ForegroundColor = ConsoleColor.Blue;
-                        Console.WriteLine("\nBravo, vous avez gagnez en " + numberTry + " essais !! :)");
-                        Console.Write("voulez-vous refaire ?\nMettez oui ou non: ");
-                        Console.ResetColor();
-
-                        reTry = Console.ReadLine();
-
-                        while (reTry != "oui" && reTry != "non")
-                        {
-                            Console.ForegroundColor = ConsoleColor.Blue;
-                            Console.Write("\nVous n'avez pas écrit les mots attendus\nVeuillez écrire oui ou non: ");
-                            Console.ResetColor();
-                            reTry = Console.ReadLine();
-                        }
-                        win = 1;
-                    }
-                }
-                void WhenTenTry(int numberTry)
-                {
-                    if (numberTry == 10 && essai != finalgoal)
-                    {
-                        Console.ForegroundColor = ConsoleColor.Blue;
-                        Console.WriteLine("\nDommage, vous avez perdu :/");
-                        Console.WriteLine("Le code était " + finalgoal);
-                        Console.Write("voulez-vous réessayer ?\nMettez oui ou non: ");
-                        Console.ResetColor();
-                        reTry = Console.ReadLine();
-
-                        while (reTry != "oui" && reTry != "non")
-                        {
-                            Console.ForegroundColor = ConsoleColor.Blue;
-                            Console.Write("\nVous n'avez pas écrit les mots attendus\nVeuillez écrire oui ou non: ");
-                            Console.ResetColor();
-                            reTry = Console.ReadLine();
-                        }
-                    }
-                }
-            }*/
+            InitializeComponent();         
         }
 
         /// <summary>
@@ -349,7 +26,7 @@ namespace MasterMind_Graphique_Projet
         private void btn_EasyMode_Click(object sender, EventArgs e)
         {
             //créer une instance du mode facile
-            frm_EasyMode easyMode = new frm_EasyMode();
+            frm_EasyMode easyMode = new frm_EasyMode(_inEnglish);
 
             //Montre le mode facile
             easyMode.Show();
@@ -366,14 +43,89 @@ namespace MasterMind_Graphique_Projet
         private void btn_NormalMode_Click_1(object sender, EventArgs e)
         {
             //créer une instance du mode normal
-            frm_NormalMode normalMode = new frm_NormalMode();
+            frm_NormalMode normalMode = new frm_NormalMode(_inEnglish);
 
+            
             //Montre le mode normal
             normalMode.Show();
 
             //Cache le menu principal
             this.Hide();
         }
+
+        /// <summary>
+        /// Option pour mettre le jeu en anglais
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        internal void anglaisToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            btn_EasyMode.Text = "Easy Mode";
+            btn_NormalMode.Text = "Normal Mode";
+            lbl_ChooseAMode.Text = "Choose your game mode !";
+            lbl_WelcomeToTheGame.Text = "Welcome to the game";
+            françaisToolStripMenuItem.Text = "French";
+            anglaisToolStripMenuItem1.Text = "English";
+            reglesDuJeuToolStripMenuItem.Text = "Rules of the game";
+            modeFacileToolStripMenuItem.Text = "Easy mode";
+            modeNormalToolStripMenuItem.Text = "Normal mode";
+            _inEnglish = true;
+
+        }
+
+        /// <summary>
+        /// Option pour mettre le jeu en français
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        internal void françaisToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            btn_EasyMode.Text = "Mode facile";
+            btn_NormalMode.Text = "Mode normal";
+            lbl_ChooseAMode.Text = "Choisis ton mode de jeu !";
+            lbl_WelcomeToTheGame.Text = "Bienvenue dans le jeu";
+            françaisToolStripMenuItem.Text = "Français";
+            anglaisToolStripMenuItem1.Text = "Anglais";
+            reglesDuJeuToolStripMenuItem.Text = "Règles du jeu";
+            modeFacileToolStripMenuItem.Text = "Mode facile";
+            modeNormalToolStripMenuItem.Text = "Mode normal";
+            _inEnglish = false;
+        }
+        /// <summary>
+        /// Explique les règles de jeu du mode normal
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void modeNormalToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (_inEnglish)
+            {
+                MessageBox.Show("1. The white squares represent the number of correctly placed colours." +
+                                             "\n2. The black squares represent the number of colours in the code but incorrectly placed." +
+                                             "\n3. Please note! The placement of the squares does not indicate the position of the correctly or incorrectly placed colours.", "Normal mode");
+                return;
+            }
+            MessageBox.Show("1. Les carrées blancs représentent le nombre de couleurs bien placées.\n2. Les carrées noirs représentent le nombre de couleurs se trouvant dans le code mais mal placées.\n3. Attention ! Le placement des carrées n'indique pas la position des couleurs bien ou mal placées.", "Mode normal");
+
+
+        }
+
+        /// <summary>
+        /// Explique les règles de jeu du mode facile
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void modeFacileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (_inEnglish)
+            {
+                MessageBox.Show("1. The white squares represent the number of colours correctly placed and indicate their position." +
+                             "\n 2. The black squares represent the number of colours in the code but incorrectly placed and indicate their position.", "Easy mode");
+                return;
+            }
+            MessageBox.Show("1. Les carrées blancs représentent le nombre de couleurs bien placées et indiquent leur positions\n2. les carrées noirs représentent le nombre de couleurs se trouvant dans le code mais mal placées et indiquent leur position.", "Mode facile");
+
+        }            
     }
 }
     
