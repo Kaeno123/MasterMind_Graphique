@@ -85,7 +85,7 @@
             this.btn_NormalMode.TabIndex = 3;
             this.btn_NormalMode.Text = "Mode normal";
             this.btn_NormalMode.UseVisualStyleBackColor = true;
-            this.btn_NormalMode.Click += new System.EventHandler(this.btn_NormalMode_Click_1);
+            this.btn_NormalMode.Click += new System.EventHandler(this.Btn_NormalMode_Click_1);
             // 
             // btn_EasyMode
             // 
@@ -96,7 +96,7 @@
             this.btn_EasyMode.TabIndex = 4;
             this.btn_EasyMode.Text = "Mode facile";
             this.btn_EasyMode.UseVisualStyleBackColor = true;
-            this.btn_EasyMode.Click += new System.EventHandler(this.btn_EasyMode_Click);
+            this.btn_EasyMode.Click += new System.EventHandler(this.Btn_EasyMode_Click);
             // 
             // mnuStrpLanguages
             // 
@@ -123,14 +123,14 @@
             this.françaisToolStripMenuItem.Name = "françaisToolStripMenuItem";
             this.françaisToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
             this.françaisToolStripMenuItem.Text = "Français";
-            this.françaisToolStripMenuItem.Click += new System.EventHandler(this.françaisToolStripMenuItem_Click);
+            this.françaisToolStripMenuItem.Click += new System.EventHandler(this.FrançaisToolStripMenuItem_Click);
             // 
             // anglaisToolStripMenuItem1
             // 
             this.anglaisToolStripMenuItem1.Name = "anglaisToolStripMenuItem1";
             this.anglaisToolStripMenuItem1.Size = new System.Drawing.Size(117, 22);
             this.anglaisToolStripMenuItem1.Text = "Anglais";
-            this.anglaisToolStripMenuItem1.Click += new System.EventHandler(this.anglaisToolStripMenuItem1_Click);
+            this.anglaisToolStripMenuItem1.Click += new System.EventHandler(this.AnglaisToolStripMenuItem1_Click);
             // 
             // reglesDuJeuToolStripMenuItem
             // 
@@ -146,14 +146,14 @@
             this.modeNormalToolStripMenuItem.Name = "modeNormalToolStripMenuItem";
             this.modeNormalToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.modeNormalToolStripMenuItem.Text = "Mode normal";
-            this.modeNormalToolStripMenuItem.Click += new System.EventHandler(this.modeNormalToolStripMenuItem_Click);
+            this.modeNormalToolStripMenuItem.Click += new System.EventHandler(this.ModeNormalToolStripMenuItem_Click);
             // 
             // modeFacileToolStripMenuItem
             // 
             this.modeFacileToolStripMenuItem.Name = "modeFacileToolStripMenuItem";
             this.modeFacileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.modeFacileToolStripMenuItem.Text = "Mode facile";
-            this.modeFacileToolStripMenuItem.Click += new System.EventHandler(this.modeFacileToolStripMenuItem_Click);
+            this.modeFacileToolStripMenuItem.Click += new System.EventHandler(this.ModeFacileToolStripMenuItem_Click);
             // 
             // frm_MasterMindGame
             // 

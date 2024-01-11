@@ -1,4 +1,9 @@
-﻿using System;
+﻿///ETML
+///Auteur : Kaeno Eyer
+///Date : 21.12.2023
+///Description : Mode normal
+///
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -85,8 +90,6 @@ namespace MasterMind_Graphique_Projet
                 btn_ExitNormalMode.Text = "Return to menu";
                 lbl_NormalMode.Text = "Normal mode";
                 lbl_NumberTry.Text = $"Try number {_numberTry}";
-
-
             }
         }
 
@@ -109,7 +112,7 @@ namespace MasterMind_Graphique_Projet
                 //Positionnement des labels
                 int y = i * _goalColoursLabel[i].Width + i * _marginLbl + _marginPnlV;
                 _goalColoursLabel[i].Location = new Point(y, 0);
-                panel1.Controls.Add(_goalColoursLabel[i]);                
+                panelCheatCode.Controls.Add(_goalColoursLabel[i]);                
             }
         }
 
@@ -150,7 +153,7 @@ namespace MasterMind_Graphique_Projet
                 pnlBtnClr.Controls.Add(_btnClr[i]);
 
                 //attache un événement au clic de chaque bouton
-                _btnClr[i].Click += btn_Color_Click;
+                _btnClr[i].Click += Btn_Color_Click;
             }
         }
 
@@ -159,7 +162,7 @@ namespace MasterMind_Graphique_Projet
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btn_Color_Click(object sender, EventArgs e)
+        private void Btn_Color_Click(object sender, EventArgs e)
         {
             //Désactive les boutons si le dernier label d'une ligne est remplie            
             if (_positionLabelColours[3, _counterRow].BackColor != Color.LightGray)
@@ -194,7 +197,7 @@ namespace MasterMind_Graphique_Projet
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btn_Replay_Click(object sender, EventArgs e)
+        private void Btn_Replay_Click(object sender, EventArgs e)
         {
             foreach (Label lblClr in _positionLabelColours)
             {
@@ -213,7 +216,7 @@ namespace MasterMind_Graphique_Projet
             //Génère un nouveau code secret
             GenCombinaisonColour();            
             
-            if (_inEnglish)
+            if (btn_Check.Text == "Check")
             {
                 lbl_NumberTry.Text = $"Try number {_numberTry}";
                 btn_Replay.Text = "Restart";
@@ -244,24 +247,7 @@ namespace MasterMind_Graphique_Projet
         /// Méthode qui compare les couleurs choisies avec celles du code secret
         /// </summary>
         private void VerifiyCode()
-        {            
-            //Si l'user trouve le code secret
-            if (_positionLabelColours[0, _counterRow].BackColor == _goalColours[0] && _positionLabelColours[1, _counterRow].BackColor == _goalColours[1] && _positionLabelColours[2, _counterRow].BackColor == _goalColours[2] && _positionLabelColours[3, _counterRow].BackColor == _goalColours[3])
-            {
-                MessageBox.Show($"Bravoooo, vous avez gagné en {_numberTry} essai(s) !!!!", "Victoire");
-
-                //Désactive tous les boutons sauf recommencer et retourner au menu
-                btn_Check.Enabled = false;
-
-                foreach (Button item in pnlBtnClr.Controls)
-                {
-                    item.Enabled = false;
-                }
-                btn_UndoLabelColor.Enabled = false;
-                btn_Replay.Enabled = true;
-                btn_Replay.Text = "Rejouer";
-            }
-
+        {
             //Créer un clone du tableau du code secret
             Color[] TempColorGoal = new Color[_COL];
             Array.Copy(_goalColours, TempColorGoal, _COL);
@@ -287,7 +273,39 @@ namespace MasterMind_Graphique_Projet
                     TempColorGoal[b] = Color.Purple;
                     _lblRightOrBadPosition[_rightPositionPlacement, _counterRow].BackColor = Color.White;
                     _rightPositionPlacement++;
-                }               
+                }
+
+                //Si l'user trouve le code secret
+                if (_rightPositionPlacement == 4)
+                {
+                    if (btn_Check.Text == "Check")
+                    {
+                        MessageBox.Show($"Good game, you won in {_numberTry} tr(y/ies) !!!!", "Victory");
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Bravoooo, vous avez gagné en {_numberTry} essai(s) !!!!", "Victoire");
+                    }
+                   
+                    //Désactive tous les boutons sauf recommencer et retourner au menu
+                    btn_Check.Enabled = false;
+
+                    foreach (Button item in pnlBtnClr.Controls)
+                    {
+                        item.Enabled = false;
+                    }
+                    btn_UndoLabelColor.Enabled = false;
+                    btn_Replay.Enabled = true;
+
+                    if (btn_Check.Text == "Check")
+                    {
+                        btn_Replay.Text = "Replay";
+                    }
+                    else
+                    {
+                        btn_Replay.Text = "Rejouer";
+                    }
+                }
             }
             _badPositionPlacement = _rightPositionPlacement;
             int ColVerify = 0;                       
@@ -314,7 +332,7 @@ namespace MasterMind_Graphique_Projet
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btn_Check_Click(object sender, EventArgs e)
+        private void Btn_Check_Click(object sender, EventArgs e)
         {
             if (_numberTry < 10)
             {                            
@@ -322,8 +340,14 @@ namespace MasterMind_Graphique_Projet
                
                 if (_positionLabelColours[3, _counterRow].BackColor == Color.LightGray)
                 {
-                    MessageBox.Show("Vous n'avez pas choisis 4 couleurs");
-                
+                    if (btn_Check.Text == "Check")
+                    {
+                        MessageBox.Show("You didn't choose 4 colors");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Vous n'avez pas choisis 4 couleurs");
+                    }                
                 }
                 else 
                 {
@@ -343,7 +367,7 @@ namespace MasterMind_Graphique_Projet
                     {
                         if (_positionLabelColours[i, _counterRow].BackColor != _goalColours[i])
                         {
-                            if (_inEnglish)
+                            if (btn_Check.Text == "Check")
                             {
                                 lbl_NumberTry.Text = $"Try number {_numberTry}";
                             }
@@ -358,7 +382,15 @@ namespace MasterMind_Graphique_Projet
             }
             else
             {
-                MessageBox.Show("Dommage, vous avez perdu :/");
+                if (btn_Check.Text == "Check")
+                {
+                    MessageBox.Show("Too bad, you lost :/");
+                }
+                else
+                {
+                    MessageBox.Show("Dommage, vous avez perdu :/");
+                }
+                
 
                 //Désactive tous les boutons sauf recommencer et retourner au menu
                 btn_Check.Enabled = false;
@@ -377,7 +409,7 @@ namespace MasterMind_Graphique_Projet
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btn_UndoLabelColor_Click(object sender, EventArgs e)
+        private void Btn_UndoLabelColor_Click(object sender, EventArgs e)
         {
             UndoLabelColor();
 
@@ -471,7 +503,7 @@ namespace MasterMind_Graphique_Projet
         /// <param name="sender"></param>
         /// <param name="e"></param>
         /// 
-        private void btn_ExitNormalMode_Click(object sender, EventArgs e)
+        private void Btn_ExitNormalMode_Click(object sender, EventArgs e)
         {
             //Ferme la page lorsque l'on appuie sur le boutton
             this.Close();
@@ -480,8 +512,12 @@ namespace MasterMind_Graphique_Projet
             frm_MasterMindGame masterMindGame = new frm_MasterMindGame();
             masterMindGame.Show();
         }
-
-        private void modeTricheToolStripMenuItem_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Montrer le code secret
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CheatModeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _countClickCheatCode = !_countClickCheatCode;
 
@@ -498,8 +534,7 @@ namespace MasterMind_Graphique_Projet
                 {
                     _goalColoursLabel[i].BackColor = Color.BurlyWood;
                 }
-            }        
-            
-        }
+            }    
+        }       
     }               
 }

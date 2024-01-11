@@ -37,7 +37,7 @@
             this.btn_UndoLabelColor = new System.Windows.Forms.Button();
             this.lbl_NumberTry = new System.Windows.Forms.Label();
             this.pnl_RIghtOrBadP = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.panelCheatCode = new System.Windows.Forms.Panel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.modeTricheToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
@@ -52,15 +52,15 @@
             this.btn_ExitNormalMode.TabIndex = 1;
             this.btn_ExitNormalMode.Text = "Revenir au menu";
             this.btn_ExitNormalMode.UseVisualStyleBackColor = true;
-            this.btn_ExitNormalMode.Click += new System.EventHandler(this.btn_ExitNormalMode_Click);
+            this.btn_ExitNormalMode.Click += new System.EventHandler(this.Btn_ExitNormalMode_Click);
             // 
             // lbl_NormalMode
             // 
             this.lbl_NormalMode.AutoSize = true;
-            this.lbl_NormalMode.Font = new System.Drawing.Font("Gill Sans Ultra Bold", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_NormalMode.Location = new System.Drawing.Point(277, 40);
+            this.lbl_NormalMode.Font = new System.Drawing.Font("Gill Sans Ultra Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_NormalMode.Location = new System.Drawing.Point(320, 42);
             this.lbl_NormalMode.Name = "lbl_NormalMode";
-            this.lbl_NormalMode.Size = new System.Drawing.Size(235, 39);
+            this.lbl_NormalMode.Size = new System.Drawing.Size(140, 23);
             this.lbl_NormalMode.TabIndex = 2;
             this.lbl_NormalMode.Text = "Mode normal";
             // 
@@ -74,7 +74,7 @@
             this.btn_Replay.TabIndex = 10;
             this.btn_Replay.Text = "Recommencer";
             this.btn_Replay.UseVisualStyleBackColor = true;
-            this.btn_Replay.Click += new System.EventHandler(this.btn_Replay_Click);
+            this.btn_Replay.Click += new System.EventHandler(this.Btn_Replay_Click);
             // 
             // pnlClrChoose
             // 
@@ -101,7 +101,7 @@
             this.btn_Check.TabIndex = 29;
             this.btn_Check.Text = "Valider";
             this.btn_Check.UseVisualStyleBackColor = true;
-            this.btn_Check.Click += new System.EventHandler(this.btn_Check_Click);
+            this.btn_Check.Click += new System.EventHandler(this.Btn_Check_Click);
             // 
             // btn_UndoLabelColor
             // 
@@ -112,7 +112,7 @@
             this.btn_UndoLabelColor.TabIndex = 30;
             this.btn_UndoLabelColor.Text = "Annuler";
             this.btn_UndoLabelColor.UseVisualStyleBackColor = true;
-            this.btn_UndoLabelColor.Click += new System.EventHandler(this.btn_UndoLabelColor_Click);
+            this.btn_UndoLabelColor.Click += new System.EventHandler(this.Btn_UndoLabelColor_Click);
             // 
             // lbl_NumberTry
             // 
@@ -131,12 +131,12 @@
             this.pnl_RIghtOrBadP.Size = new System.Drawing.Size(120, 683);
             this.pnl_RIghtOrBadP.TabIndex = 32;
             // 
-            // panel1
+            // panelCheatCode
             // 
-            this.panel1.Location = new System.Drawing.Point(12, 106);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(189, 44);
-            this.panel1.TabIndex = 33;
+            this.panelCheatCode.Location = new System.Drawing.Point(12, 106);
+            this.panelCheatCode.Name = "panelCheatCode";
+            this.panelCheatCode.Size = new System.Drawing.Size(189, 44);
+            this.panelCheatCode.TabIndex = 33;
             // 
             // menuStrip1
             // 
@@ -153,7 +153,7 @@
             this.modeTricheToolStripMenuItem.Name = "modeTricheToolStripMenuItem";
             this.modeTricheToolStripMenuItem.Size = new System.Drawing.Size(83, 20);
             this.modeTricheToolStripMenuItem.Text = "Mode triche";
-            this.modeTricheToolStripMenuItem.Click += new System.EventHandler(this.modeTricheToolStripMenuItem_Click);
+            this.modeTricheToolStripMenuItem.Click += new System.EventHandler(this.CheatModeToolStripMenuItem_Click);
             // 
             // frm_NormalMode
             // 
@@ -161,7 +161,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.BurlyWood;
             this.ClientSize = new System.Drawing.Size(784, 876);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panelCheatCode);
             this.Controls.Add(this.pnl_RIghtOrBadP);
             this.Controls.Add(this.lbl_NumberTry);
             this.Controls.Add(this.btn_UndoLabelColor);
@@ -173,12 +173,12 @@
             this.Controls.Add(this.btn_ExitNormalMode);
             this.Controls.Add(this.menuStrip1);
             this.Cursor = System.Windows.Forms.Cursors.Cross;
-            this.Font = new System.Drawing.Font("Stencil", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("Stencil", 12F);
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.Name = "frm_NormalMode";
             this.Text = "MasterMind - Mode normal";
-            this.Click += new System.EventHandler(this.btn_Color_Click);
+            this.Click += new System.EventHandler(this.Btn_Color_Click);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -197,7 +197,7 @@
         private System.Windows.Forms.Button btn_UndoLabelColor;
         private System.Windows.Forms.Label lbl_NumberTry;
         private System.Windows.Forms.Panel pnl_RIghtOrBadP;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panelCheatCode;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem modeTricheToolStripMenuItem;
     }

@@ -1,4 +1,9 @@
-﻿using System;
+﻿///ETML
+///Auteur : Kaeno Eyer
+///Date : 21.12.2023
+///Description : Menu d'acceuil du jeu MasterMind
+///
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -23,10 +28,10 @@ namespace MasterMind_Graphique_Projet
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btn_EasyMode_Click(object sender, EventArgs e)
+        private void Btn_EasyMode_Click(object sender, EventArgs e)
         {
             //créer une instance du mode facile
-            frm_EasyMode easyMode = new frm_EasyMode(_inEnglish);
+            Frm_EasyMode easyMode = new Frm_EasyMode(_inEnglish);
 
             //Montre le mode facile
             easyMode.Show();
@@ -40,7 +45,7 @@ namespace MasterMind_Graphique_Projet
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btn_NormalMode_Click_1(object sender, EventArgs e)
+        private void Btn_NormalMode_Click_1(object sender, EventArgs e)
         {
             //créer une instance du mode normal
             frm_NormalMode normalMode = new frm_NormalMode(_inEnglish);
@@ -58,7 +63,7 @@ namespace MasterMind_Graphique_Projet
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        internal void anglaisToolStripMenuItem1_Click(object sender, EventArgs e)
+        internal void AnglaisToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             btn_EasyMode.Text = "Easy Mode";
             btn_NormalMode.Text = "Normal Mode";
@@ -78,7 +83,7 @@ namespace MasterMind_Graphique_Projet
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        internal void françaisToolStripMenuItem_Click(object sender, EventArgs e)
+        internal void FrançaisToolStripMenuItem_Click(object sender, EventArgs e)
         {
             btn_EasyMode.Text = "Mode facile";
             btn_NormalMode.Text = "Mode normal";
@@ -96,7 +101,7 @@ namespace MasterMind_Graphique_Projet
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void modeNormalToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ModeNormalToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (_inEnglish)
             {
@@ -115,7 +120,7 @@ namespace MasterMind_Graphique_Projet
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void modeFacileToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ModeFacileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (_inEnglish)
             {
